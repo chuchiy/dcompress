@@ -567,7 +567,9 @@ func NewReader(r io.Reader) (io.Reader, error) {
 	//dumpHTAB("end of run")
 	//}
 	// BUG(mdr): <kludge alert>
-	outBuf[0] = firstChar
+	if len(outBuf) > 0 {
+		outBuf[0] = firstChar
+	}
 	// </kludge>
 	byteReader := bytes.NewReader(outBuf)
 	return byteReader, nil
